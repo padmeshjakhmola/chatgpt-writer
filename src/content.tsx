@@ -18,6 +18,15 @@ const PlasmoOverlay = () => {
   const [showButton, setShowButton] = useState(false)
   const [buttonPosition, setButtonPosition] = useState({ bottom: 0, right: 0 })
 
+  const handleInsertText = (text) => {
+    const inputBox = document.querySelector(".msg-form__contenteditable")
+    if (inputBox) {
+      inputBox.focus()
+      document.execCommand("selectAll", false, null)
+      document.execCommand("insertText", false, text)
+    }
+  }
+
   useEffect(() => {
     const checkInputBox = () => {
       const inputBox = document.querySelector(".msg-form__contenteditable")
@@ -88,7 +97,7 @@ const PlasmoOverlay = () => {
             bottom: `${buttonPosition.bottom}px`,
             right: `${buttonPosition.right}px`
           }}>
-          <CountButton />
+          <CountButton onInsertText={handleInsertText} />
         </div>
       )}
     </>
