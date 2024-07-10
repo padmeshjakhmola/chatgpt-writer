@@ -1,5 +1,6 @@
 import { useState } from "react"
 
+import downarrow from "../../assets/downarrow.svg"
 import generate from "../../assets/generate.svg"
 
 export const Modal = ({ onClose, onInsertText }) => {
@@ -76,14 +77,15 @@ export const Modal = ({ onClose, onInsertText }) => {
               isInsertEnabled
                 ? "bg-green-500"
                 : "bg-gray-300 cursor-not-allowed"
-            } text-white p-2 rounded-md text-xl px-4`}
+            } text-white p-2 rounded-md text-xl px-4 flex items-center`}
             disabled={!isInsertEnabled}>
+            <img src={downarrow} alt="downarrow" className="w-4 h-4 mr-2" />
             Insert
           </button>
           <button
             onClick={handleGenerate}
             className="bg-blue-500 text-white p-2 px-4 rounded-md mr-2 text-xl flex items-center">
-            <img src={generate} alt="aiicon" className="w-4 h-4 mr-2" />
+            <img src={generate} alt="generate" className="w-4 h-4 mr-2" />
             Generate
           </button>
         </div>
