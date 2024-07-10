@@ -26,7 +26,7 @@ export const Modal = ({ onClose, onInsertText }) => {
     setMessages([...messages, userMessage, responseMessage])
     setInputValue("")
     setInsertEnabled(true)
-    setHasGenerated(true) // Set to true after generating the first response
+    setHasGenerated(true)
   }
 
   const handleRegenerate = () => {

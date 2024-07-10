@@ -1,10 +1,9 @@
-import { useReducer, useState } from "react"
+import { useState } from "react"
 
 import icon from "../../assets/icon.png"
 import { Modal } from "../components/Modal"
 
 export const CountButton = ({ onInsertText }) => {
-  const [count, increase] = useReducer((c) => c + 1, 0)
   const [isModalOpen, setModalOpen] = useState(false)
 
   return (

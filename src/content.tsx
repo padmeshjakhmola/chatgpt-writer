@@ -38,8 +38,6 @@ const PlasmoOverlay = () => {
           console.log("Input Clicked")
         }
         const handleBlur = (event) => {
-          // Remove this line to prevent hiding the button on blur
-          // setShowButton(false)
           console.log("Input blurred")
         }
 
@@ -64,7 +62,7 @@ const PlasmoOverlay = () => {
             ) {
               const isFocused =
                 inputBox.getAttribute("data-artdeco-is-focused") === "true"
-              setShowButton(true) // Always show the button once it's visible
+              setShowButton(true)
               if (isFocused) {
                 updateButtonPosition(inputBox)
               }
@@ -74,7 +72,6 @@ const PlasmoOverlay = () => {
 
         observer.observe(inputBox, { attributes: true })
 
-        // Cleanup event listeners and observer on component unmount
         return () => {
           inputBox.removeEventListener("focus", handleFocus)
           inputBox.removeEventListener("blur", handleBlur)
