@@ -2,4 +2,4 @@
 
 ## Video Demo
 
-[Download the video](media/demo.webm)
+[Watch the video](media/demo.webm)
