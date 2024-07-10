@@ -2,11 +2,18 @@ import { useState } from "react"
 
 import downarrow from "../../assets/downarrow.svg"
 import generate from "../../assets/generate.svg"
+import regenerate from "../../assets/regenerate.svg"
 
 export const Modal = ({ onClose, onInsertText }) => {
   const [inputValue, setInputValue] = useState("")
   const [messages, setMessages] = useState([])
   const [isInsertEnabled, setInsertEnabled] = useState(false)
+  const [hasGenerated, setHasGenerated] = useState(false)
+
+  const responseMessage = {
+    text: "Thank you for the opportunity! If you have any more questions or if there's anything else I can help you with, feel free to ask.",
+    isUser: false
+  }
 
   const handleGenerate = () => {
     if (inputValue.trim() === "") return
@@ -16,14 +23,14 @@ export const Modal = ({ onClose, onInsertText }) => {
       isUser: true
     }
 
-    const responseMessage = {
-      text: "Thank you for the opportunity! If you have any more questions or if there's anything else I can help you with, feel free to ask.",
-      isUser: false
-    }
-
     setMessages([...messages, userMessage, responseMessage])
     setInputValue("")
     setInsertEnabled(true)
+    setHasGenerated(true) // Set to true after generating the first response
+  }
+
+  const handleRegenerate = () => {
+    setMessages((prevMessages) => [...prevMessages, responseMessage])
   }
 
   const handleKeyDown = (e) => {
@@ -82,12 +89,21 @@ export const Modal = ({ onClose, onInsertText }) => {
             <img src={downarrow} alt="downarrow" className="w-4 h-4 mr-2" />
             Insert
           </button>
-          <button
-            onClick={handleGenerate}
-            className="bg-blue-500 text-white p-2 px-4 rounded-md mr-2 text-xl flex items-center">
-            <img src={generate} alt="generate" className="w-4 h-4 mr-2" />
-            Generate
-          </button>
+          {hasGenerated ? (
+            <button
+              onClick={handleRegenerate}
+              className="bg-blue-500 text-white p-2 px-4 rounded-md mr-2 text-xl flex items-center">
+              <img src={regenerate} alt="regenerate" className="w-4 h-4 mr-2" />
+              Regenerate
+            </button>
+          ) : (
+            <button
+              onClick={handleGenerate}
+              className="bg-blue-500 text-white p-2 px-4 rounded-md mr-2 text-xl flex items-center">
+              <img src={generate} alt="generate" className="w-4 h-4 mr-2" />
+              Generate
+            </button>
+          )}
         </div>
       </div>
     </div>
