@@ -39,16 +39,16 @@ export const Modal = ({ onClose, onInsertText }) => {
 
   return (
     <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white p-4 shadow-lg rounded-lg w-3/12">
+      <div className="bg-white p-4 shadow-lg rounded-xl w-3/12">
         <div className="mb-4 max-h-60 overflow-y-auto">
           {messages.map((message, index) => (
             <div
               key={index}
-              className={`flex mb-2 ${
+              className={`flex mb-2 px-4 ${
                 message.isUser ? "justify-end" : "justify-start"
               }`}>
               <div
-                className={`p-2 rounded-lg text-lg ${
+                className={`p-2 rounded-lg text-xl px-4 ${
                   message.isUser ? "bg-blue-500 text-white" : "bg-gray-300"
                 } max-w-xs`}>
                 {message.text}
@@ -61,18 +61,13 @@ export const Modal = ({ onClose, onInsertText }) => {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="border p-2 mb-4 w-full text-lg"
-          placeholder="Enter Your input"
+          className="border p-4 mb-4 w-full text-xl rounded-lg"
+          placeholder="Your Prompt"
         />
-        <div className="flex justify-between items-center mb-4">
-          <button
-            onClick={handleGenerate}
-            className="bg-blue-500 text-white p-2 rounded mr-2 text-lg">
-            Generate
-          </button>
+        <div className="flex justify-end gap-3 items-center mb-4">
           <button
             onClick={onClose}
-            className="bg-gray-500 text-white p-2 rounded text-lg">
+            className="bg-red-500 text-white p-2 rounded-md text-xl px-4">
             Close
           </button>
           <button
@@ -81,9 +76,15 @@ export const Modal = ({ onClose, onInsertText }) => {
               isInsertEnabled
                 ? "bg-green-500"
                 : "bg-gray-300 cursor-not-allowed"
-            } text-white p-2 rounded text-lg`}
+            } text-white p-2 rounded-md text-xl px-4`}
             disabled={!isInsertEnabled}>
             Insert
+          </button>
+          <button
+            onClick={handleGenerate}
+            className="bg-blue-500 text-white p-2 px-4 rounded-md mr-2 text-xl flex items-center">
+            <img src={generate} alt="aiicon" className="w-4 h-4 mr-2" />
+            Generate
           </button>
         </div>
       </div>
